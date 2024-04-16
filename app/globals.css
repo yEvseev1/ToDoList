@@ -7,6 +7,10 @@
         background-color: var(--background);
     }
 
+    .bg-header{
+        background-color: var(--background-header);
+    }
+
     .border-border {
         border-color: var(--border);
     }
@@ -17,7 +21,8 @@
 
     :root {
         --svg-color-invert: 100%;
-        --background: #f6f2ff;
+        --background: #F0F0F0;
+        --background-header: #E0E0E0;
         --foreground: 240 10% 3.9%;
 
         --card: 0 0% 100%;
@@ -50,7 +55,8 @@
 
     .dark {
         --svg-color-invert: 0%;
-        --background: #020817;
+        --background: #1A1A1A;
+        --background-header: #0D0D0D;
         --foreground: 0 0% 98%;
 
         --card: 240 10% 3.9%;

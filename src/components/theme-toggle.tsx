@@ -1,22 +1,36 @@
 'use client'
 
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/ui/select"
 import {Moon, Sun} from 'lucide-react'
 import {useTheme} from 'next-themes'
 
-import {Button} from '@/src/ui/button'
+import {Button} from '@/ui/button'
+import {useEffect} from "react";
 
 export function ThemeToggle() {
   const {setTheme, theme} = useTheme()
-  
+  useEffect(() => {
+    console.log(theme)
+  }, [theme]);
   return (
-    <Button
-      variant='ghost'
-      size='icon'
-      onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
-    >
-      <Sun className='h-[2rem] w-[1,8rem] dark:hidden'/>
-      <Moon className='hidden h-7 w-7 dark:block'/>
-      <span className='sr-only'>Смена темы</span>
-    </Button>
+    <>
+      <Select onValueChange={(value) => setTheme(value)}>
+        <SelectTrigger className="w-[180px] ">
+          <SelectValue placeholder="Theme"/>
+        </SelectTrigger>
+        <SelectContent>
+          <SelectItem value="light">Light</SelectItem>
+          <SelectItem value="dark">Dark</SelectItem>
+          <SelectItem value="system">System</SelectItem>
+        </SelectContent>
+      </Select>
+      
+    </>
   )
 }
