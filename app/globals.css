@@ -2,12 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+
 @layer base {
     .bg-background {
         background-color: var(--background);
     }
 
-    .bg-header{
+    .bg-header {
         background-color: var(--background-header);
     }
 
@@ -20,6 +21,8 @@
     }
 
     :root {
+        --background-task-complete: #a29f9f;
+        --background-task-notComplete: #cecdcd;
         --svg-color-invert: 100%;
         --background: #F0F0F0;
         --background-header: #E0E0E0;
@@ -54,6 +57,8 @@
     }
 
     .dark {
+        --background-task-complete: #262626;
+        --background-task-notComplete: #333333;
         --svg-color-invert: 0%;
         --background: #1A1A1A;
         --background-header: #0D0D0D;
