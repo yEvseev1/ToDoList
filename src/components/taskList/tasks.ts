@@ -10,9 +10,10 @@ export interface Task {
 interface TaskStore {
   tasks: Task[],
   addNewTask: (task: Task) => void,
-  removeTask?: (index: number) => void,
+  removeTask: (id: number) => void,
+  resetComplete: (id: number) => void
   clearCompleted?: () => void,
-  
+  setCompleteTask: (id: number) => void
 }
 
 export const useTaskStore = create<TaskStore>((set) => ({
@@ -43,10 +44,43 @@ export const useTaskStore = create<TaskStore>((set) => ({
       complete: true,
     }
   ],
+  
   addNewTask: (task: Task) => set(state => {
-    const newTasks = [task, ...state.tasks];
-    console.log("New task added. Current list of tasks:", newTasks);
-    return {tasks: newTasks};
+    const newTaskList = [task, ...state.tasks];
+    return {tasks: newTaskList};
+  }),
+  
+  removeTask: (id: number) => set(state => {
+    const newTaskList = state.tasks.filter(item => item.id != id)
+    console.log(newTaskList, id)
+    return {tasks: newTaskList}
+  }),
+  
+  resetComplete: (id: number) => set(state => {
+    const newTaskList = state.tasks.map(task => {
+      if (task.id === id) {
+        return {
+          ...task,
+          complete: false
+        }
+      } else {
+        return task
+      }
+    })
+    return {tasks: newTaskList}
+  }),
+  setCompleteTask: (id: number) => set(state => {
+    const newTaskList = state.tasks.map(task => {
+      if (task.id === id) {
+        return {
+          ...task,
+          complete: true
+        }
+      } else {
+        return task
+      }
+    })
+    return {tasks: newTaskList}
   })
   
   
