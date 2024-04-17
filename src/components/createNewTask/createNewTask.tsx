@@ -11,7 +11,7 @@ import {Form, FormControl, FormDescription, FormField, FormItem, FormLabel, Form
 const registrationFormSchema = z.object({
   task: z
     .string()
-    .min(1,{message:'The task field cannot be empty'})
+    .min(1, {message: 'The task field cannot be empty'})
 });
 
 export type RegistrationFormValues = z.infer<typeof registrationFormSchema>;
@@ -21,10 +21,16 @@ export default function CreateNewTask() {
     resolver: zodResolver(registrationFormSchema),
   });
   
-  const addNewTask = useTaskStore(State => State.addNewTask)
+  const {addNewTask, tasks} = useTaskStore(State => State)
   
-  function createTask() {
-    console.log('fdsfdsfds')
+  function createTask(values: z.infer<typeof registrationFormSchema>) {
+    addNewTask({
+      id: tasks.length + 1,
+      task: values.task,
+      complete: false
+    })
+    
+    form.setValue('task','')
   }
   
   return <div className='mb-6 max-w-[400px] w-full'>
