@@ -5,7 +5,7 @@
     max-width: 400px;
     min-width: 300px;
     padding: 10px;
-    border-radius: 20px;
+    border-radius: 12px;
     background-color: var(--background-task-complete);
     text-decoration: line-through;
 }
@@ -19,7 +19,7 @@
     min-width: 300px;
     padding: 10px;
     border: solid 1px transparent;
-    border-radius: 20px;
+    border-radius: 12px;
     overflow: hidden;
 }
 
@@ -37,7 +37,7 @@
     position: absolute;
     inset: 2px;
     background-color: var(--background-task-notComplete);
-    border-radius: 20px;
+    border-radius: 12px;
 }
 
 @keyframes animate {
