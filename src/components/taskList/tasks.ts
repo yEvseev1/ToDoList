@@ -12,7 +12,7 @@ interface TaskStore {
   addNewTask: (task: Task) => void,
   removeTask: (id: number) => void,
   resetComplete: (id: number) => void
-  clearCompleted?: () => void,
+  clearCompleted: () => void,
   setCompleteTask: (id: number) => void
 }
 
@@ -81,9 +81,11 @@ export const useTaskStore = create<TaskStore>((set) => ({
       }
     })
     return {tasks: newTaskList}
+  }),
+  clearCompleted:() => set(state => {
+    const newTaskList = state.tasks.filter(task => !task.complete)
+    return {tasks: newTaskList}
   })
-  
-  
 }))
 
 
